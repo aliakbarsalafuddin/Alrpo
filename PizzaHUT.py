@@ -44,51 +44,97 @@ for _ in range(jumlah_pizza):
         3: "large"
 }
 # mengambil nama sesuai yang di inputkan pada sistem menu 
-    nama_topping = daftar_topping[topping]
-    nama_crust = daftar_crust[crust]
-    nama_ukuran = daftar_ukuran[ukuran]
+nama_topping = daftar_topping[topping]
+nama_crust = daftar_crust[crust]
+nama_ukuran = daftar_ukuran[ukuran]
 
-    #deklarasi harga awal = 0 rupiah 
-    harga = 0
-    harga_topping = 43637 
-    harga_xtracheese = 0
+#deklarasi harga awal = 0 rupiah 
+harga = 0
+harga_topping = 43637 
+harga_xtracheese = 0
     
-    # if untuk harga pizza dengan pinggiran crust pan dan juga harga per ukuranya ukurannya 
-    if crust == 1 :
-        hargacrust = 43637 # untuk harga pizza dengan pinggiran crust pan
-        if ukuran == 1 :
-            hargaukuran= 0 # untuk harga pizza dengan ukuran personal 
-        elif ukuran == 2 :
-            hargaukuran = 57273 # untuk harga pizza  dengan ukuran regural 
-        else: 
-            hargaukuran = 89091 # untuk harga pizza dengan ukuran large
+# if untuk harga pizza dengan pinggiran crust pan dan juga harga per ukuranya ukurannya 
+if crust == 1 :
+    hargacrust = 43637 # untuk harga pizza dengan pinggiran crust pan
+    if ukuran == 1 :
+        hargaukuran= 0 # untuk harga pizza dengan ukuran personal 
+    elif ukuran == 2 :
+        hargaukuran = 57273 # untuk harga pizza  dengan ukuran regural 
+    else: 
+        hargaukuran = 89091 # untuk harga pizza dengan ukuran large
     
-    # if untuk harga pizza dengan pinggiran stuffedcrust cheese dan juga harga per ukurannya 
-    elif crust == 2 :
-        hargacrust = 55455 # untuk harga pizza dengan pinggiran stuffedcrust cheese 
-        if ukuran == 1 :
+# if untuk harga pizza dengan pinggiran stuffedcrust cheese dan juga harga per ukurannya 
+elif crust == 2 :
+    hargacrust = 55455 # untuk harga pizza dengan pinggiran stuffedcrust cheese 
+    if ukuran == 1 :
             hargaukuran = 0 # untuk harga pizza  dengan ukuran personal 
-        elif ukuran == 2 :
+    elif ukuran == 2 :
             hargaukuran = 64455 # untuk harga pizza  dengan ukuran regural 
-        else: 
+    else: 
             hargaukuran = 104545 # untuk harga pizza  dengan ukuran large 
     
-    # if untuk harga pizza dengan pinggiran stuffedcrust sausage dan juga harga per ukurannya 
-    elif crust == 3 :
-        hargacrust = 52728 # untuk harga pizza dengan pinggiran stuffedcrust sausage 
-        if ukuran == 1 :
-            hargaukuran = 0 # untuk harga pizza dengan ukuran personal
-        elif ukuran == 2 :
-            hargaukuran = 64545 # untuk harga pizza  dengan ukuran reguler 
-        else:
-            hargaukuran = 102727 # untuk harga pizza  dengan ukuran large
+# if untuk harga pizza dengan pinggiran stuffedcrust sausage dan juga harga per ukurannya 
+elif crust == 3 :
+    hargacrust = 52728 # untuk harga pizza dengan pinggiran stuffedcrust sausage 
+    if ukuran == 1 :
+        hargaukuran = 0 # untuk harga pizza dengan ukuran personal
+    elif ukuran == 2 :
+        hargaukuran = 64545 # untuk harga pizza  dengan ukuran reguler 
+    else:
+        hargaukuran = 102727 # untuk harga pizza  dengan ukuran large
             
-    # if untuk harga pizzza dengan pinggiran cheessy bites dan juga harga per ukurannya 
-    elif crust == 4 :
-        hargacrust = 55455 # untuk harga pizza dengan pinggiran cheessy bites 
-        if ukuran == 1 : 
-            hargaukuran = 0 # harga dengan ukuran personal 
-        elif ukuran == 2 :
-            hargaukuran= 65455 #harga dengan ukuran reguler 
-        else:
-            hargaukuran = 104545 # harga dengan ukuran large
+# if untuk harga pizzza dengan pinggiran cheessy bites dan juga harga per ukurannya 
+elif crust == 4 :
+    hargacrust = 55455 # untuk harga pizza dengan pinggiran cheessy bites 
+    if ukuran == 1 : 
+        hargaukuran = 0 # harga dengan ukuran personal 
+    elif ukuran == 2 :
+        hargaukuran= 65455 #harga dengan ukuran reguler 
+    else:
+        hargaukuran = 104545 # harga dengan ukuran large
+#fungsi if untuk harga pizza dengan pinggiran crown crust dan juga harga per ukurannya 
+else:
+    hargacrust = 55455 #untuk harga pizza dengan pinggiran crust Crown Crust
+    if ukuran == 1:
+        hargaukuran= 0 #harga jika ukuran personal
+    elif ukuran == 2:
+        hargaukuran = 65455 #harga jika ukuran regular
+    else:
+        hargaukuran = 104545 #harga jika ukuran large
+    
+    
+#fungsi if untuk jika pelanggan ingin menambahkan Extra Cheese beserta harga per ukuran pizza
+if xtracheese == "Y":
+    xtracheese = "Dengan Tambahan Extra Cheese"
+    if ukuran == 1:
+        harga += 13636 #harga jika ukuran personal
+    elif ukuran == 2:
+        harga = 16364 #harga jika ukuran regular
+    elif ukuran ==3:
+        harga = 19091 #harga jika ukuran large
+    else:
+        xtracheese = "Tanpa Tambahan Extra Cheese"
+
+     
+#deklarasi perhitungan total harga
+total_harga = harga + hargacrust + hargaukuran + harga_xtracheese 
+    
+pesanan_pizza.append({
+    "Topping": nama_topping,
+    "Crust": nama_crust,
+    "Ukuran": nama_ukuran,
+    "Extra Cheese": xtracheese,
+    "Total Harga": total_harga
+    })
+total_harga_semua_pesanan = sum(pesanan["Total Harga"] for pesanan in pesanan_pizza)
+
+#print tampilan bill
+print("========================================================")
+print("-----------Pesanan Anda----------")
+print(f"Topping : {nama_topping}") #menampilkan nama topping yang dipilih
+print(f"Crust : {nama_crust}") #menampilkan nama crust yang dipilih
+print(f"Ukuran : {nama_ukuran}") #menampilkan nama ukuran yang dipilih
+print(xtracheese) #menampilkan hasil apakah user menambahkan Extra Cheese atau tidak
+print("_________________________________")
+print("Total Harga = Rp. {:,.2f}".format(total_harga_semua_pesanan)) #menampilkan harga total
+print("Terima Kasih Atas Kunjungan Anda")
