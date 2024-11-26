@@ -1,0 +1,41 @@
+import tkinter as tk
+from tkinter import messagebox
+
+class BankAccount:
+    def __init__(self):
+        self.__balance = 0 # Private attribute
+    
+    def get_balance(self):
+        return self.__balance
+    
+    def deposit(self, amount):
+        if amount > 0:
+            self.__balance += amount
+        else:
+            raise ValueError("Invalid deposit amount!")
+
+# Function to add balance (outside the class for GUI access)
+def add_balance():
+    try:
+        amount = int(entry_amount.get())
+        account.deposit(amount)
+        label_balance.config(text=f"Balance: {account.get_balance()}")
+    except ValueError as e:
+        messagebox.showerror("Error", str(e))
+
+# GUI Tkinter
+root = tk.Tk()  # Corrected 'TK' to 'Tk'
+root.title("Data Hiding in BankAccount")
+
+account = BankAccount()
+
+label_balance = tk.Label(root, text=f"Balance: {account.get_balance()}")
+label_balance.pack()
+
+entry_amount = tk.Entry(root)
+entry_amount.pack()
+
+button_deposit = tk.Button(root, text="Deposit", command=add_balance)
+button_deposit.pack()  # Added parentheses for method call
+
+root.mainloop()
