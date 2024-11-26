@@ -1,0 +1,53 @@
+import tkinter as tk
+from tkinter import messagebox
+
+# Fungsi untuk membagi dua angka
+def divide_numbers():
+    try:
+        num1 = float(entry_num1.get())
+        num2 = float(entry_num2.get())
+        result = num1 / num2
+        label_result.config(text=f"Hasil: {result:.2f}")  # Hasil dibulatkan menjadi 2 desimal
+    except ZeroDivisionError:
+        messagebox.showerror("Error", "Pembagian dengan nol tidak diperbolehkan!")
+    except ValueError:
+        messagebox.showerror("Error", "Masukkan angka yang valid.")
+
+# Fungsi untuk mereset input dan hasil
+def reset():
+    entry_num1.delete(0, tk.END)  # Menghapus isi input angka pertama
+    entry_num2.delete(0, tk.END)  # Menghapus isi input angka kedua
+    label_result.config(text="Hasil: ")  # Mereset label hasil
+
+# Membuat jendela utama menggunakan Tkinter
+root = tk.Tk()
+root.title("Penanganan Eksepsi dalam Pembagian")
+
+# Mengatur ukuran jendela tetap dan melebar
+root.geometry("500x400")  # Mengatur ukuran jendela menjadi 500x300 piksel
+root.resizable(False, False)  # Menonaktifkan perubahan ukuran jendela
+
+# Label dan input untuk angka pertama
+tk.Label(root, text="Angka 1:", font=("Arial", 12)).pack(pady=10)
+entry_num1 = tk.Entry(root, font=("Arial", 12))
+entry_num1.pack(pady=5)
+
+# Label dan input untuk angka kedua
+tk.Label(root, text="Angka 2:", font=("Arial", 12)).pack(pady=10)
+entry_num2 = tk.Entry(root, font=("Arial", 12))
+entry_num2.pack(pady=5)
+
+# Tombol untuk melakukan pembagian
+button_divide = tk.Button(root, text="Bagi", font=("Arial", 12), command=divide_numbers)
+button_divide.pack(pady=10)
+
+# Tombol untuk mereset input dan hasil
+button_reset = tk.Button(root, text="Reset", font=("Arial", 12), command=reset)
+button_reset.pack(pady=10)
+
+# Label untuk menampilkan hasil
+label_result = tk.Label(root, text="Hasil: ", font=("Arial", 14))
+label_result.pack(pady=20)
+
+# Menjalankan aplikasi Tkinter
+root.mainloop()
